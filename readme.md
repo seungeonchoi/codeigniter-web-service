@@ -1,11 +1,11 @@
-#hycubew2017
+# hycubew2017
 Web-Application Service project of HYCUBE(Information Security Academic Society of Institution in Hanyang university)
 
-##Participants
+## Participants
 This is personal project by
 Seung-Eon Choi(최승언)
 
-##Implemented
+## Implemented
 
 Login/out using AJAX
 
@@ -15,8 +15,8 @@ Custom WYSIWYG editor
 
 Authentication mail Using PHPMailer
 
-##Used Frameworks
+## Used Frameworks
 CodeIgniter
 
-##Open-source
+## Open-source
 PHPMailer

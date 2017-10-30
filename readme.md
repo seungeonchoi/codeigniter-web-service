@@ -13,7 +13,7 @@ Improved UI design with CSS Animation
 
 Custom WYSIWYG editor
 
-Authentication mail Using PHPMailer
+Authentication mail using PHPMailer
 
 ## Used Frameworks
 CodeIgniter

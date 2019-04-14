@@ -1,15 +1,4 @@
-<?php
-session_start();
-$username = "";
-$enabled = "";
 
-if (isset($_SESSION["username"]) && isset($_SESSION["enabled"])) {
-    $username = $_SESSION["username"];
-    $enabled = $_SESSION["enabled"];
-} else {
-    ;
-}
-?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,15 +10,11 @@ if (isset($_SESSION["username"]) && isset($_SESSION["enabled"])) {
 
     <script src = "<?php echo asset_url() ?>js/common.js">
     </script>
-    <?php
-    if ($username != "" && $enabled == "1") {
-        ?>
+
         <link rel="stylesheet" href="<?php echo asset_url() ?>notepad/notepad.css">
         <script src="<?php echo asset_url() ?>notepad/notepad.js">
         </script>
-        <?php
-    }
-    ?>
+
 
 </head>
 <body>
@@ -51,9 +36,6 @@ include 'component/sidenav.php'
 ?>
 
 <div id="container" class="container">
-    <?php
-    if ($username != "" && $enabled == "1") {
-        ?>
         <div class="notepad_section" style="height: 800px">
             <h2>WYSIWYG Editor</h2>
             <form method="post" action="/app/notepad/notepad_result.php" enctype="multipart/form-data" id="rtf">
@@ -64,36 +46,14 @@ include 'component/sidenav.php'
                 <input type="button" onclick="noteValue('textarea')" value="post">
             </form>
         </div>
-
-        <?php
-    } else {
-        ?>
-        <div class="unauthorized">
-            <h1>permission denied</h1>
-        </div>
-        <?php
-    }
-    ?>
-
 </div>
-<!-- List of Modals -->
-<?php include 'component/modal.php' ?>
+
 
 <div id="footer">
     <h1>HYCUBE</h1>
     <p>경기도 안산시 상록구 한양대학로 55 한양대학교 ERICA캠퍼스 4공학관 1층 SMASH 학습전용공간</p>
 </div>
 
-<?php
-if ($username != "" && $enabled == 0) {
-?>
-    <script>
-        modal('activation');
-    </script>
-<?php
-}else{
 
-}
-?>
 </body>
 </html>

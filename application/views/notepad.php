@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="<?php echo base_url()?>assets/img/favicon.gif" type="image/gif">
+    <link rel="icon" href="http://localhost/assets/img/favicon.gif" type="image/gif">
     <link rel="stylesheet" href="<?php echo asset_url() ?>css/default.css">
-
-    <script src = "<?php echo asset_url() ?>js/common.js">
+    <link rel="stylesheet" href="<?php echo asset_url() ?>notepad/notepad.css">
+    <script src="<?php echo asset_url() ?>notepad/notepad.js">
     </script>
-
-        <link rel="stylesheet" href="<?php echo asset_url() ?>notepad/notepad.css">
-        <script src="<?php echo asset_url() ?>notepad/notepad.js">
-        </script>
-
-
 </head>
 <body>
 <div class="header">
@@ -28,12 +22,7 @@
     </div>
 
 </div>
-<?php
-include 'component/topnav.php'
-?>
-<?php
-include 'component/sidenav.php'
-?>
+
 
 <div id="container" class="container">
         <div class="notepad_section" style="height: 800px">

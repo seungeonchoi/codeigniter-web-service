@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // http://localhost:8080/
 // https://web-project-hycube.appspot.com/
-$config['base_url'] = 'http://localhost:8080/';
+$config['base_url'] = 'http://localhost/';
 
 /*
 |--------------------------------------------------------------------------

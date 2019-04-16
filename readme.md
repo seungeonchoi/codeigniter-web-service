@@ -18,5 +18,5 @@ Authentication mail using PHPMailer
 ## Used Frameworks
 CodeIgniter
 
-## Open-source
+## Open-source Library
 PHPMailer

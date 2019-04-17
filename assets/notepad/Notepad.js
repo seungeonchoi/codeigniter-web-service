@@ -1,6 +1,11 @@
+import NoteModel from './NoteModel.js';
+import NoteController from './NoteController.js';
+import NoteView from './NoteView.js';
 /**
  * Created by chou6 on 2017-08-04.
  */
+
+
 window.addEventListener("DOMContentLoaded", function () {
     //init('textarea');
     createNotepad('textarea');
@@ -18,6 +23,7 @@ function Notepad(elem,width,height) {
     this.saveSelection="";
     this.savedSelection="";
     this.restoreSelection="";
+
     if (window.getSelection && document.createRange) {
         this.saveSelection = function(containerEl) {
             var range = this.editor.view.contentWindow.document.getSelection().getRangeAt(0);
@@ -906,13 +912,7 @@ function setSize() {
 
 
 
-function changeState(el) {
-    if (el.className.match(/(?:^|\s)active(?!\S)/)) {
-        el.className = el.className.replace(/(?:^|\s)active(?!\S)/g, '');
-    } else {
-        el.className += " active";
-    }
-}
+
 
 function modify(el, state) {
     if (state) {
@@ -961,7 +961,7 @@ function empty(el) {
 
 function invoke(el) {
     if (document.createEvent) {
-        evt = document.createEvent("MouseEvents");
+        let evt = document.createEvent("MouseEvents");
         evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     }
     (evt) ? el.dispatchEvent(evt) : (el.click && el.click());
@@ -1057,3 +1057,10 @@ var browser = function() {
                             isEdge ? 'Edge' :
                                 "Don't know";
 };
+function changeState(el) {
+    if (el.className.match(/(?:^|\s)active(?!\S)/)) {
+        el.className = el.className.replace(/(?:^|\s)active(?!\S)/g, '');
+    } else {
+        el.className += " active";
+    }
+}

@@ -8,7 +8,7 @@
     <link rel="icon" href="http://localhost/assets/img/favicon.gif" type="image/gif">
     <link rel="stylesheet" href="<?php echo asset_url() ?>css/default.css">
     <link rel="stylesheet" href="<?php echo asset_url() ?>notepad/notepad.css">
-    <script src="<?php echo asset_url() ?>notepad/notepad.js">
+    <script src="<?php echo asset_url() ?>notepad/notepad.js" type="module">
     </script>
 </head>
 <body>

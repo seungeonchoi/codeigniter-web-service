@@ -44,7 +44,7 @@ function Notepad(elem,width,height) {
             var nodeStack = [containerEl], node, foundStart = false, stop = false;
 
             while (!stop && (node = nodeStack.pop())) {
-                if (node.nodeType == 3) {
+                if (node.nodeType === 3) {
                     var nextCharIndex = charIndex + node.length;
                     if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
                         range.setStart(node, savedSel.start - charIndex);
@@ -110,13 +110,12 @@ function Btngroup(view) {
     this.view = view;
     this.buttons = [];
 }
-function Button(name,text) {
+function Button(name) {
     this.name = name;
     this.root = "";
     this.subdiv = "";
     this.parent = "";
     this.view = "";
-    this.view.textContent = text;
     this.clickHandlers = [];
     this.dropdown = "";
 }
@@ -746,17 +745,17 @@ function createNotepad(id, mode,width,height) {
             }
 
         };
-        for (var group in menu_list) {
+        for (let group in menu_list) {
             var btnGroup = new Btngroup();
             MenuObj.addButtonGroup(btnGroup);
             var btnGroup_view = document.createElement("div");
             btnGroup_view.setAttribute('class', 'btnGroup');
             btnGroup.view = btnGroup_view;
             for (var obj in menu_list[group]) {
-                var tmp = menu_list[group][obj];
-                var type = tmp.type;
-                if (type == "button") {
-                    var button = new Button(obj);
+                va  r tmp = menu_list[group][obj];
+                    var type = tmp.type;
+                    if (type == "button") {
+                        var button = new Button(obj);
                     var button_view = document.createElement("button");
                     button_view.type = type;
                     var inode = document.createElement("i");

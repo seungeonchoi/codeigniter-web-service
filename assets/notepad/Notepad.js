@@ -752,7 +752,7 @@ function createNotepad(id, mode,width,height) {
             btnGroup_view.setAttribute('class', 'btnGroup');
             btnGroup.view = btnGroup_view;
             for (var obj in menu_list[group]) {
-                va  r tmp = menu_list[group][obj];
+                let tmp = menu_list[group][obj];
                     var type = tmp.type;
                     if (type == "button") {
                         var button = new Button(obj);

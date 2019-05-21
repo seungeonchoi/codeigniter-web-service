@@ -26,8 +26,7 @@ class Student extends CI_Model
                 $sql = "INSERT INTO activation (email, code) VALUES (?,?)";
                 $stmt = $this->db->query($sql, array($name,$random_hash));
             }
-
-            echo "success";
+            return true;
         }
         catch(Exception $e)
         {
@@ -37,61 +36,46 @@ class Student extends CI_Model
 
     }
     public function update_activation_code($name,$hash){
-        $servername = "35.200.55.14";
-        $username = "root";
-        $password = "diamond!";
         try{
-            $conn = new PDO("mysql:host=$servername;dbname=hycube", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-            $stmt = $conn->prepare("SELECT username, enabled FROM student where username = :name");
-            $stmt->execute(array(':name' => $name));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if($result){
-                if($result[0]["enabled"]==1){
+            $sql= "SELECT username, enabled FROM student where username = ?";
+            $stmt = $this->db->query($sql, array($name));
+            if($stmt->num_rows()>0){
+                $row = $stmt->row();
+                if($row->enabled==1){
                     echo "email_registered\n";
                     return false;
                 }else{
-                    $stmt = $conn->prepare("UPDATE activation SET code = :code WHERE email = :name");
-                    $stmt->execute(array(':code'=>$hash,':name' => $name));
+                    $sql= "UPDATE activation SET code = ? WHERE email = ?";
+                    $this->db->query($sql, array($hash,$name));
+                    return true;
                 }
-
             }else{
                 echo "no_email\n";
                 return false;
             }
-
-        }catch(PDOException $e)
+        }catch(Exception $e)
         {
             echo "doPdo failed: " . $e->getMessage();
             return false;
         }
-        return true;
     }
 
     public function select($name, $pwd){
-        $servername = "35.200.55.14";
-        $username = "root";
-        $password = "diamond!";
         try{
-            $conn = new PDO("mysql:host=$servername;dbname=hycube", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $stmt = $conn->prepare("SELECT username, enabled FROM student where username = :name and password = :pwd");
-            $stmt->execute(array(':name' => $name, ':pwd'=>$pwd));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if($result){
-                $_SESSION["username"] = $result[0]["username"];
-                $_SESSION["enabled"] = $result[0]["enabled"];
+
+            $sql = "SELECT username, enabled FROM student where username = ? and password = ?";
+            $stmt = $this->db->query($sql,array($name,$pwd));
+            if($stmt->num_rows()>0){
+                $row = $stmt->row();
+                $_SESSION["username"] = $row->username;
+                $_SESSION["enabled"] = $row->enabled;
             }else{
                 echo "no";
                 return false;
             }
 
-        }catch(PDOException $e)
+        }catch(Exception $e)
         {
             echo "doPdo failed: " . $e->getMessage();
             return false;

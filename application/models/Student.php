@@ -12,32 +12,24 @@ class Student extends CI_Model
         parent::__construct();
     }
     function insert($name, $pwd, $random_hash){
-        $servername = "35.200.55.14";
-        $username = "root";
-        $password = "diamond!";
+
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=hycube", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-            $stmt = $conn->prepare("SELECT email FROM activation where email = :name");
-            $stmt->execute(array(':name' => $name));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if($result){
+            $sql = "SELECT email FROM activation where email = ?";
+            $stmt = $this->db->query($sql, array($name));
+            if ($stmt->num_rows() > 0)
+            {
                 echo "email_exists";
                 return false;
             }else{
-                $stmt = $conn->prepare("INSERT INTO student (username, password, enabled) VALUES (:name, :pwd ,0)");
-                $stmt->execute(array(':name' => $name, ':pwd'=>$pwd));
-
-                $stmt = $conn->prepare("INSERT INTO activation (email, code) VALUES (:name,:hash)");
-                $stmt->execute(array(':hash'=>$random_hash, ':name'=>$name));
+                $sql = "INSERT INTO student (username, password, enabled) VALUES (?, ? ,0)";
+                $stmt = $this->db->query($sql, array($name,$pwd));
+                $sql = "INSERT INTO activation (email, code) VALUES (?,?)";
+                $stmt = $this->db->query($sql, array($name,$random_hash));
             }
+
             echo "success";
         }
-        catch(PDOException $e)
+        catch(Exception $e)
         {
             echo "doPdo failed: " . $e->getMessage();
             return false;

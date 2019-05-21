@@ -31,7 +31,7 @@ class Hycubemail
         // 0 = off (for production use)
         // 1 = client messages
         // 2 = client and server messages
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 2;
 
         //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
@@ -61,7 +61,7 @@ class Hycubemail
 
         //Set who the message is to be sent to
         $mail->addAddress($name, 'Customer');
-
+//        $mail->addAddress('chou610@gmail.com', 'Customer');
         //Set the subject line
         $mail->Subject = 'Confirm your Hycube account';
 

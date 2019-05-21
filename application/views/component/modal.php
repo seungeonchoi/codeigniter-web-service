@@ -53,9 +53,9 @@
         <div class="modal-body">
             <form>
                 <label for="fname">Username</label>
-                <input type="text" id="username" name="username" placeholder="example@hanyang.ac.kr">
+                <input type="text" id="info_username" name="username" placeholder="example@hanyang.ac.kr">
                 <label for="lname">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="info_password" name="password">
             </form>
             <button class="button blue full" onclick="do_modify()">Submit</button>
             <button class="button red full" onclick="do_delete()">Delete Account</button>

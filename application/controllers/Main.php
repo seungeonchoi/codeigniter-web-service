@@ -83,13 +83,13 @@ class Main extends CI_Controller {
             $pass=$this->Student->update_activation_code($name,$hash);
             if(!$pass){
                 echo "email_registered or no mail exists";
-                return false;;
+                return false;
             }
             $this->load->library('hycubemail');
             $pass = $this->hycubemail->send($name, $hash);
             if(!$pass){
                 echo "send_error";
-                return false;;
+                return false;
             }
 
         }else{
@@ -130,5 +130,9 @@ class Main extends CI_Controller {
         }
 
 
+    }
+    public function test(){
+        $this->load->library('hycubemail');
+        $pass = $this->hycubemail->send('chou610@naver.com', 1234);
     }
 }
